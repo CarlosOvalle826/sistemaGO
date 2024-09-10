@@ -12,7 +12,7 @@ include('layout/parte1.php');
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
+                <div class="col-sm-8">
                     <h1 class="m-0">Bienvenido al sistema de ventas Hermanitas G. O.</h1>
                 </div><!-- /.col -->
 

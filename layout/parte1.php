@@ -8,8 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Starter</title>
-
+    <title>Hermanitas G. O.</title>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
@@ -22,9 +21,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!--<link rel="stylesheet" href="public/images/uicons-solid-rounded/css/uicons-solid-rounded.css">-->
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.5.1/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.5.1/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <!-- DataTables -->
+    <link rel="stylesheet" href="<?php echo $URL; ?>/public/templeates/AdminLTE-3.2.0/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo $URL; ?>/public/templeates/AdminLTE-3.2.0/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo $URL; ?>/public/templeates/AdminLTE-3.2.0/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!--Cuerpo de la vista-->
 
 <body class="hold-transition sidebar-mini">
-
     <script>
         Swal.fire({
             title: "Bienvenido al sistema",
@@ -32,9 +35,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             icon: "success"
         });
     </script>
-
     <div class="wrapper">
-
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-dark navbar-light">
             <!-- Left navbar links -->

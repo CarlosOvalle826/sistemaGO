@@ -5,38 +5,42 @@ $NombreUsuario = $_POST['NombreUsuario'];
 $CorreoUsuario = $_POST['CorreoUsuario'];
 $ContrasenaUsuario = $_POST['ContrasenaUsuario'];
 $RepetirContrasena = $_POST['RepetirContrasena'];
+$IdUsuario = $_POST['IdUsuario'];
 //validar campos vacios
 if (empty($NombreUsuario)) {
     session_start();
     $_SESSION['mensaje'] = "Error, completar los campos";
     $_SESSION['icono'] = "error";
-    header('Location:' . $URL . '/usuarios/crear.php');
+    header('Location:' . $URL . '/usuarios/actualizar.php?id=' . $IdUsuario);
 } elseif (empty($CorreoUsuario)) {
     session_start();
     $_SESSION['mensaje'] = "Error, completar los campos";
     $_SESSION['icono'] = "error";
-    header('Location:' . $URL . '/usuarios/crear.php');
+    header('Location:' . $URL . '/usuarios/actualizar.php?id=' . $IdUsuario);
 } elseif (empty($ContrasenaUsuario)) {
     session_start();
     $_SESSION['mensaje'] = "Error, completar los campos";
     $_SESSION['icono'] = "error";
-    header('Location:' . $URL . '/usuarios/crear.php');
+    header('Location:' . $URL . '/usuarios/actualizar.php?id=' . $IdUsuario);
 } else {
     //validación de contraseña ingresada
     if ($ContrasenaUsuario == $RepetirContrasena) {
         $ContrasenaUsuario = password_hash($ContrasenaUsuario, PASSWORD_DEFAULT);
-        //ejecutar sentencia SQL para ingresar un nuevo usuario
-        $sentencia = $pdo->prepare("INSERT INTO tbusuario 
-    (NombreUsuario, CorreoUsuario, ContrasenaUsuario, FechaCreacion) 
-    VALUES 
-    (:NombreUsuario, :CorreoUsuario, :ContrasenaUsuario, :FechaCreacion)");
+        //ejecutar sentencia SQL para actualizar un nuevo usuario
+        $sentencia = $pdo->prepare("UPDATE tbusuario 
+        SET NombreUsuario=:NombreUsuario,
+        CorreoUsuario=:CorreoUsuario,
+        ContrasenaUsuario=:ContrasenaUsuario,
+        FechaActualizacion=:FechaActualizacion WHERE IdUsuario = :IdUsuario");
+        //Creación de parametros para tomar los valores de las variables
         $sentencia->bindParam('NombreUsuario', $NombreUsuario);
         $sentencia->bindParam('CorreoUsuario', $CorreoUsuario);
         $sentencia->bindParam('ContrasenaUsuario', $ContrasenaUsuario);
-        $sentencia->bindParam('FechaCreacion', $FechaHora);
+        $sentencia->bindParam('FechaActualizacion', $FechaHora);
+        $sentencia->bindParam('IdUsuario', $IdUsuario);
         $sentencia->execute();
         session_start();
-        $_SESSION['mensaje'] = "Usuario registrado correctamente";
+        $_SESSION['mensaje'] = "Usuario actualizado correctamente";
         $_SESSION['icono'] = "success";
         header('Location:' . $URL . '/usuarios/');
     } else {
@@ -44,6 +48,6 @@ if (empty($NombreUsuario)) {
         session_start();
         $_SESSION['mensaje'] = "Error, las contraseñas no son iguales";
         $_SESSION['icono'] = "error";
-        header('Location:' . $URL . '/usuarios/crear.php');
+        header('Location:' . $URL . '/usuarios/actualizar.php?id=' . $IdUsuario);
     }
 }
