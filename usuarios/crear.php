@@ -2,7 +2,8 @@
 include('../app/config.php');
 include('../layout/sesion.php');
 include('../layout/parte1.php');
-
+//controlador para roles
+include('../app/controllers/roles/listado_roles.php');
 ?>
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -56,6 +57,17 @@ include('../layout/parte1.php');
                                         <div class="form-group">
                                             <label for="">Correo</label>
                                             <input type="email" name="CorreoUsuario" class="form-control" placeholder="Escriba su correo" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Roles de usuario</label>
+                                            <select name="Rol" id="" class="form-control">
+                                                <?php
+                                                foreach ($datos_roles as $dato_roles) { ?>
+                                                    <option value="<?php echo $dato_roles['IdRol']; ?>"><?php echo $dato_roles['Rol']; ?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Contraseña</label>

@@ -2,7 +2,7 @@
 include('../app/config.php');
 include('../layout/sesion.php');
 include('../layout/parte1.php');
-include('../app/controllers/usuarios/mostrar_usuario.php');
+
 ?>
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -20,7 +20,7 @@ include('../app/controllers/usuarios/mostrar_usuario.php');
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Borrar usuario <?php echo $NombreUsuario ?></h1>
+                    <h1 class="m-0">Registrar nuevo Rol</h1>
                 </div><!-- /.col -->
 
             </div><!-- /.row -->
@@ -34,9 +34,9 @@ include('../app/controllers/usuarios/mostrar_usuario.php');
             <!--contenido del modulo create-->
             <div class="row">
                 <div class="col-md-6">
-                    <div class="card card-danger">
+                    <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">¿Esta seguro de eliminar al usuario?</h3>
+                            <h3 class="card-title">Ingrese los datos al formulario</h3>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -48,24 +48,15 @@ include('../app/controllers/usuarios/mostrar_usuario.php');
                         <div class="card-body" style="display: block;">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <form action="../app/controllers/usuarios/borrar_usuario.php" method="post">
-                                        <input type="text" name="IdUsuario" value="<?php echo $IdUsuarioGet ?>" hidden>
+                                    <form action="../app/controllers/roles/crear.php" method="post">
                                         <div class="form-group">
-                                            <label for="">Nombre</label>
-                                            <input type="text" name="NombreUsuario" class="form-control" value="<?php echo $NombreUsuario ?>" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Correo</label>
-                                            <input type="email" name="CorreoUsuario" class="form-control" value="<?php echo $CorreoUsuario ?>" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Rol de usuario</label>
-                                            <input type="text" name="Rol" class="form-control" value="<?php echo $Rol ?>" disabled>
+                                            <label for="">Nombre del Rol</label>
+                                            <input type="text" name="Rol" class="form-control" placeholder="Escriba el Rol" required>
                                         </div>
                                         <hr>
                                         <div class="form-group">
-                                            <a href="index.php" class="btn btn-secondary">Volver</a>
-                                            <button class="btn btn-danger">Eliminar</button>
+                                            <a href="index.php" class="btn btn-secondary">Cancelar</a>
+                                            <button type="submit" class="btn btn-primary">Guardar</button>
                                         </div>
                                     </form>
                                 </div>

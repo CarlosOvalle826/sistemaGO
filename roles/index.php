@@ -3,7 +3,7 @@ include('../app/config.php');
 include('../layout/sesion.php');
 include('../layout/parte1.php');
 //consulta a la base de datos sobre la tabla usuario
-include('../app/controllers/usuarios/listado_usuarios.php');
+include('../app/controllers/roles/listado_roles.php');
 
 ?>
 <!-- Content Wrapper. Contains page content -->
@@ -13,7 +13,7 @@ include('../app/controllers/usuarios/listado_usuarios.php');
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Listado de usuarios</h1>
+                    <h1 class="m-0">Listado de roles</h1>
                 </div><!-- /.col -->
 
             </div><!-- /.row -->
@@ -25,10 +25,10 @@ include('../app/controllers/usuarios/listado_usuarios.php');
         <div class="container-fluid">
 
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="card card-outline card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Usuarios registrados</h3>
+                            <h3 class="card-title">Roles registrados</h3>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -47,13 +47,7 @@ include('../app/controllers/usuarios/listado_usuarios.php');
                                             <center>No.</center>
                                         </th>
                                         <th>
-                                            <center>Nombre</center>
-                                        </th>
-                                        <th>
-                                            <center>Correo</center>
-                                        </th>
-                                        <th>
-                                            <center>Rol de usuario</center>
+                                            <center>Nombre Rol</center>
                                         </th>
                                         <th>
                                             <center>Acciones</center>
@@ -64,28 +58,22 @@ include('../app/controllers/usuarios/listado_usuarios.php');
                                 <tbody>
                                     <?php
                                     $contador = 0;
-                                    foreach ($datos_usuario as $dato_usuario) {
+                                    foreach ($datos_roles as $dato_roles) {
                                         //crear una variable para almacenar el ID de usuario
-                                        $IdUsuario = $dato_usuario['IdUsuario'];
+                                        $IdRol = $dato_roles['IdRol'];
 
                                     ?>
                                         <tr>
                                             <td>
                                                 <center><?php echo $contador = $contador + 1; ?></center>
                                             </td>
-                                            <td> <?php echo $dato_usuario['NombreUsuario']; ?></td>
-                                            <td> <?php echo $dato_usuario['CorreoUsuario']; ?></td>
-                                            <td>
-                                                <center><?php echo $dato_usuario['Rol']; ?></center>
-                                            </td>
+                                            <td> <?php echo $dato_roles['Rol']; ?></td>
+
                                             <td>
                                                 <center>
                                                     <!--Botones para controlar los registros-->
                                                     <div class="btn-group">
-                                                        <a href="mostrar.php?id=<?php echo $IdUsuario; ?>" type="button" class="btn btn-outline-info"><i class="fi fi-rr-magnifying-glass-eye"></i>Ver</a>
-                                                        <a href="actualizar.php?id=<?php echo $IdUsuario; ?>" type="button" class="btn btn-outline-success"><i class="fi fi-rr-pencil"></i>Editar</a>
-                                                        <a href="borrar.php?id=<?php echo $IdUsuario; ?>" type="button" class="btn btn-outline-danger"><i class="fi fi-rr-delete-user"></i>Eliminar</a>
-
+                                                        <a href="actualizar.php?id=<?php echo $IdRol; ?>" type="button" class="btn btn-outline-success"><i class="fi fi-rr-pencil"></i>Editar</a>
                                                     </div>
                                                 </center>
                                             </td>
@@ -99,13 +87,7 @@ include('../app/controllers/usuarios/listado_usuarios.php');
                                             <center>No.</center>
                                         </th>
                                         <th>
-                                            <center>Nombre</center>
-                                        </th>
-                                        <th>
-                                            <center>Correo</center>
-                                        </th>
-                                        <th>
-                                            <center>Rol de usuario</center>
+                                            <center>Nombre Rol</center>
                                         </th>
                                         <th>
                                             <center>Acciones</center>
@@ -139,12 +121,12 @@ include('../layout/mensaje.php');
             language: {
                 "emptyTable": "No hay información",
                 "decimal": "",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ Usuarios",
-                "infoEmpty": "Mostrando 0 to 0 de 0 Usuarios",
-                "infoFiltered": "(Filtrado de _MAX_ total Usuarios)",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Roles",
+                "infoEmpty": "Mostrando 0 to 0 de 0 Roles",
+                "infoFiltered": "(Filtrado de _MAX_ total Roles)",
                 "infoPostFix": "",
                 "thousands": ",",
-                "lengthMenu": "Mostrar _MENU_ Usuarios",
+                "lengthMenu": "Mostrar _MENU_ Roles",
                 "loadingRecords": "Cargando...",
                 "processing": "Procesando...",
                 "search": "Buscador:",

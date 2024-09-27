@@ -3,6 +3,7 @@ include('../app/config.php');
 include('../layout/sesion.php');
 include('../layout/parte1.php');
 include('../app/controllers/usuarios/actualizar_usuario.php');
+include('../app/controllers/roles/listado_roles.php');
 ?>
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -57,6 +58,21 @@ include('../app/controllers/usuarios/actualizar_usuario.php');
                                         <div class="form-group">
                                             <label for="">Correo</label>
                                             <input type="email" name="CorreoUsuario" class="form-control" value="<?php echo $CorreoUsuario ?>" placeholder="Escriba su correo" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Roles de usuario</label>
+                                            <select name="Rol" id="" class="form-control">
+                                                <?php
+                                                foreach ($datos_roles as $dato_roles) {
+                                                    $rol_tabla = $dato_roles['Rol'];
+                                                    $IdRol = $dato_roles['IdRol']; ?>
+                                                    <option value="<?php echo $IdRol; ?>" <?php if ($rol_tabla == $Rol) { ?> selected="selected" <?php } ?>>
+                                                        <?php echo $rol_tabla; ?>
+                                                    </option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Contraseña</label>

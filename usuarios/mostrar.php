@@ -56,6 +56,10 @@ include('../app/controllers/usuarios/mostrar_usuario.php');
                                         <label for="">Correo</label>
                                         <input type="email" name="CorreoUsuario" class="form-control" value="<?php echo $CorreoUsuario ?>" disabled>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="">Rol de usuario</label>
+                                        <input type="text" name="Rol" class="form-control" value="<?php echo $Rol ?>" disabled>
+                                    </div>
                                     <hr>
                                     <div class="form-group">
                                         <a href="index.php" class="btn btn-secondary">Volver</a>
