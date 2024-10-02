@@ -26,15 +26,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="<?php echo $URL; ?>/public/templeates/AdminLTE-3.2.0/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="<?php echo $URL; ?>/public/templeates/AdminLTE-3.2.0/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!--Cuerpo de la vista-->
+    <!-- jQuery -->
+    <script src="<?php echo $URL; ?>/public/templeates/AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
 
 <body class="hold-transition sidebar-mini">
-    <script>
-        Swal.fire({
-            title: "Bienvenido al sistema",
-            text: "<?php echo $correo_sesion; ?>",
-            icon: "success"
-        });
-    </script>
+
     <div class="wrapper">
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-dark navbar-light">
@@ -131,6 +127,48 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <a href="<?php echo $URL; ?>/roles/crear.php" class="nav-link active">
                                         <i class="fi fi-rr-user-lock"></i>
                                         <p style="color: black;">Crear roles</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--Integración del modulo categorias-->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">
+                                <i class="fi fi-rr-brand"></i>
+                                <p>
+                                    Categorias
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo $URL; ?>/categorias" class="nav-link active">
+                                        <i class="fi fi-rr-tags"></i>
+                                        <p style="color: black;">Categorias registradas</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--Integración del modulo almacen-->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">
+                                <i class="fi fi-rr-warehouse-alt"></i>
+                                <p>
+                                    Almacen
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo $URL; ?>/almacen" class="nav-link active">
+                                        <i class="fi fi-rr-assessment"></i>
+                                        <p style="color: black;">Productos registrados</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo $URL; ?>/roles/crear.php" class="nav-link active">
+                                        <i class="fi fi-rr-apps-add"></i>
+                                        <p style="color: black;">Crear productos</p>
                                     </a>
                                 </li>
                             </ul>
