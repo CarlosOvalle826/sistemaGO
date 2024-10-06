@@ -38,146 +38,152 @@ include('../app/controllers/almacen/listado_productos.php');
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body" style="display: block;">
-                            <!--tabla completa-->
-                            <table id="example1" class="table table-bordered table-striped">
-                                <!--Cabecera de la tabla-->
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <center>No.</center>
-                                        </th>
-                                        <th>
-                                            <center>Código</center>
-                                        </th>
-                                        <th>
-                                            <center>Nombre categoría</center>
-                                        </th>
-                                        <th>
-                                            <center>Imagen</center>
-                                        </th>
-                                        <th>
-                                            <center>Nombre</center>
-                                        </th>
-                                        <th>
-                                            <center>Descripción</center>
-                                        </th>
-                                        <th>
-                                            <center>Stock</center>
-                                        </th>
-                                        <th>
-                                            <center>Stock minimo</center>
-                                        </th>
-                                        <th>
-                                            <center>Stock maximo</center>
-                                        </th>
-                                        <th>
-                                            <center>Precio compra</center>
-                                        </th>
-                                        <th>
-                                            <center>Precio venta</center>
-                                        </th>
-                                        <th>
-                                            <center>Precio mayorista</center>
-                                        </th>
-                                        <th>
-                                            <center>Fecha ingreso</center>
-                                        </th>
-                                        <th>
-                                            <center>Usuario</center>
-                                        </th>
-                                        <th>
-                                            <center>Acción</center>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <!--Contenido de la tabla-->
-                                <tbody>
-                                    <?php
-                                    $contador = 0;
-                                    foreach ($datos_productos as $dato_producto) {
-                                        //crear una variable para almacenar el ID de usuario
-                                        $IdProducto = $dato_producto['IdProducto'];
-
-                                    ?>
+                            <!--tabla responsiva-->
+                            <div class="table table-responsive">
+                                <!--tabla completa-->
+                                <table id="example1" class="table table-bordered table-striped table-sm">
+                                    <!--Cabecera de la tabla-->
+                                    <thead>
                                         <tr>
-                                            <td>
-                                                <center><?php echo $contador = $contador + 1; ?></center>
-                                            </td>
-                                            <td> <?php echo $dato_producto['Codigo']; ?></td>
-                                            <td> <?php echo $dato_producto['NombreCategoria']; ?></td>
-                                            <td>
-                                                <img src="<?php echo $dato_producto['Imagen'] ?>" width="50px" alt="">
-                                            </td>
-                                            <td> <?php echo $dato_producto['Nombre']; ?></td>
-                                            <td> <?php echo $dato_producto['Descripcion']; ?></td>
-                                            <td> <?php echo $dato_producto['Stock']; ?></td>
-                                            <td> <?php echo $dato_producto['StockMinimo']; ?></td>
-                                            <td> <?php echo $dato_producto['StockMaximo']; ?></td>
-                                            <td> <?php echo $dato_producto['PrecioCompra']; ?></td>
-                                            <td> <?php echo $dato_producto['PrecioVenta']; ?></td>
-                                            <td> <?php echo $dato_producto['PrecioMayorista']; ?></td>
-                                            <td> <?php echo $dato_producto['FechaIngreso']; ?></td>
-                                            <td> <?php echo $dato_producto['CorreoUsuario']; ?></td>
-                                            <td>
-                                                <center>
-                                                    <!--Botones para controlar los registros-->
-                                                    <a href="" class="btn btn-outline-success"><i class="fi fi-rr-pencil"></i>Editar</a>
-                                                </center>
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
-                                </tbody>
-                                <!--Pie de la tabla-->
-                                <tfoot>
-                                    <tr>
-                                        <th>
-                                            <center>No.</center>
-                                        </th>
-                                        <th>
-                                            <center>Código</center>
-                                        </th>
-                                        <th>
-                                            <center>Nombre categoría</center>
-                                        </th>
-                                        <th>
-                                            <center>Imagen</center>
-                                        </th>
-                                        <th>
-                                            <center>Nombre</center>
-                                        </th>
-                                        <th>
-                                            <center>Descripción</center>
-                                        </th>
-                                        <th>
-                                            <center>Stock</center>
-                                        </th>
-                                        <th>
+                                            <th>
+                                                <center>No.</center>
+                                            </th>
+                                            <th>
+                                                <center>Código</center>
+                                            </th>
+                                            <th>
+                                                <center>Nombre categoría</center>
+                                            </th>
+                                            <th>
+                                                <center>Imagen</center>
+                                            </th>
+                                            <th>
+                                                <center>Nombre</center>
+                                            </th>
+                                            <th>
+                                                <center>Descripción</center>
+                                            </th>
+                                            <th>
+                                                <center>Stock</center>
+                                            </th>
+                                            <!--<th>
                                             <center>Stock minimo</center>
                                         </th>
                                         <th>
                                             <center>Stock maximo</center>
+                                        </th>-->
+                                            <th>
+                                                <center>Precio compra</center>
+                                            </th>
+                                            <th>
+                                                <center>Precio venta</center>
+                                            </th>
+                                            <th>
+                                                <center>Precio mayorista</center>
+                                            </th>
+                                            <th>
+                                                <center>Fecha ingreso</center>
+                                            </th>
+                                            <th>
+                                                <center>Acción</center>
+                                            </th>
+                                            <th>
+                                                <center>Usuario</center>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <!--Contenido de la tabla-->
+                                    <tbody>
+                                        <?php
+                                        $contador = 0;
+                                        foreach ($datos_productos as $dato_producto) {
+                                            //crear una variable para almacenar el ID de producto
+                                            $IdProducto = $dato_producto['IdProducto'];
+
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <center><?php echo $contador = $contador + 1; ?></center>
+                                                </td>
+                                                <td> <?php echo $dato_producto['Codigo']; ?></td>
+                                                <td> <?php echo $dato_producto['NombreCategoria']; ?></td>
+                                                <td>
+                                                    <img src="<?php echo $URL . "/almacen/img_productos/" . $dato_producto['Imagen'] ?>" width="100px" alt="">
+                                                </td>
+                                                <td> <?php echo $dato_producto['Nombre']; ?></td>
+                                                <td> <?php echo $dato_producto['Descripcion']; ?></td>
+                                                <td> <?php echo $dato_producto['Stock']; ?></td><!--opciones-->
+                                                <td> <?php echo $dato_producto['PrecioCompra']; ?></td>
+                                                <td> <?php echo $dato_producto['PrecioVenta']; ?></td>
+                                                <td> <?php echo $dato_producto['PrecioMayorista']; ?></td>
+                                                <td> <?php echo $dato_producto['FechaIngreso']; ?></td>
+                                                <td>
+                                                    <center>
+                                                        <!--Botones para controlar los registros-->
+                                                        <div class="btn-group">
+                                                            <a href="mostrar.php?id=<?php echo $IdProducto; ?>" type="button" class="btn btn-outline-info btn-sm"><i class="fi fi-rr-magnifying-glass-eye"></i>Ver</a>
+                                                            <a href="actualizar.php?id=<?php echo $IdProducto; ?>" type="button" class="btn btn-outline-success btn-sm"><i class="fi fi-rr-pencil"></i>Editar</a>
+                                                            <a href="borrar.php?id=<?php echo $IdProducto; ?>" type="button" class="btn btn-outline-danger btn-sm" btn-sm><i class="fi fi-rr-delete-user"></i>Eliminar</a>
+
+                                                        </div>
+                                                    </center>
+                                                </td>
+                                                <td> <?php echo $dato_producto['CorreoUsuario']; ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                    <!--Pie de la tabla-->
+                                    <tfoot>
+                                        <tr>
+                                            <th>
+                                                <center>No.</center>
+                                            </th>
+                                            <th>
+                                                <center>Código</center>
+                                            </th>
+                                            <th>
+                                                <center>Nombre categoría</center>
+                                            </th>
+                                            <th>
+                                                <center>Imagen</center>
+                                            </th>
+                                            <th>
+                                                <center>Nombre</center>
+                                            </th>
+                                            <th>
+                                                <center>Descripción</center>
+                                            </th>
+                                            <th>
+                                                <center>Stock</center>
+                                            </th>
+                                            <!-- <th>
+                                            <center>Stock minimo</center>
                                         </th>
                                         <th>
-                                            <center>Precio compra</center>
-                                        </th>
-                                        <th>
-                                            <center>Precio venta</center>
-                                        </th>
-                                        <th>
-                                            <center>Precio mayorista</center>
-                                        </th>
-                                        <th>
-                                            <center>Fecha ingreso</center>
-                                        </th>
-                                        <th>
-                                            <center>Usuario</center>
-                                        </th>
-                                        <th>
-                                            <center>Acción</center>
-                                        </th>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                                            <center>Stock maximo</center>
+                                        </th>-->
+                                            <th>
+                                                <center>Precio compra</center>
+                                            </th>
+                                            <th>
+                                                <center>Precio venta</center>
+                                            </th>
+                                            <th>
+                                                <center>Precio mayorista</center>
+                                            </th>
+                                            <th>
+                                                <center>Fecha ingreso</center>
+                                            </th>
+                                            <th>
+                                                <center>Acción</center>
+                                            </th>
+                                            <th>
+                                                <center>Usuario</center>
+                                            </th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
                         </div>
                         <!-- /.card-body -->
                     </div>

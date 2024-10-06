@@ -34,7 +34,7 @@ include('../app/controllers/usuarios/mostrar_usuario.php');
             <!--contenido del modulo create-->
             <div class="row">
                 <div class="col-md-6">
-                    <div class="card card-primary">
+                    <div class="card card-info">
                         <div class="card-header">
                             <h3 class="card-title">Información del usuario</h3>
 

@@ -4,6 +4,8 @@ include('layout/sesion.php');
 include('layout/parte1.php');
 include('app/controllers/usuarios/listado_usuarios.php');
 include('app/controllers/roles/listado_roles.php');
+include('app/controllers/categorias/listado_categorias.php');
+include('app/controllers/almacen/listado_productos.php');
 
 ?>
 
@@ -74,6 +76,54 @@ include('app/controllers/roles/listado_roles.php');
                             </div>
                         </a>
                         <a href="<?php echo $URL; ?>/roles" class="small-box-footer">
+                            Mas información <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small card -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <?php
+                            $contador_categorias = 0;
+                            foreach ($datos_categorias as $dato_roles) {
+                                $contador_categorias = $contador_categorias + 1;
+                            }
+                            ?>
+                            <h3><?php echo $contador_categorias; ?></h3>
+                            <p>Categorías registradas</p>
+                        </div>
+                        <a href="<?php echo $URL; ?>/categorias">
+                            <div class="icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                        </a>
+                        <a href="<?php echo $URL; ?>/categorias" class="small-box-footer">
+                            Mas información <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6" style="color:white">
+                    <!-- small card -->
+                    <div class=" small-box bg-" style="background-color:blue; ">
+                        <div class="inner">
+                            <?php
+                            $contador_productos = 0;
+                            foreach ($datos_productos as $dato_producto) {
+                                $contador_productos = $contador_productos + 1;
+                            }
+                            ?>
+                            <h3><?php echo $contador_productos; ?></h3>
+                            <p>Productos registrados</p>
+                        </div>
+                        <a href="<?php echo $URL; ?>/almacen/crear.php">
+                            <div class="icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                        </a>
+                        <a href="<?php echo $URL; ?>/almacen" class="small-box-footer">
                             Mas información <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>

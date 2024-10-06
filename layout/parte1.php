@@ -154,7 +154,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <a href="#" class="nav-link active">
                                 <i class="fi fi-rr-warehouse-alt"></i>
                                 <p>
-                                    Almacen
+                                    Almacén
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -166,7 +166,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo $URL; ?>/roles/crear.php" class="nav-link active">
+                                    <a href="<?php echo $URL; ?>/almacen/crear.php" class="nav-link active">
                                         <i class="fi fi-rr-apps-add"></i>
                                         <p style="color: black;">Crear productos</p>
                                     </a>

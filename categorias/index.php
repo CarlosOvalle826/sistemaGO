@@ -79,7 +79,7 @@ include('../app/controllers/categorias/listado_categorias.php');
                                                 <center>
                                                     <!--Botones para controlar los registros-->
                                                     <div class="btn-group">
-                                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-actualizar<?php echo $IdCategoria; ?>">
+                                                        <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#modal-actualizar<?php echo $IdCategoria; ?>">
                                                             <i class="fi fi-rr-pencil"></i>
                                                             Editar
                                                         </button>
