@@ -19,7 +19,7 @@ try {
     //  print_r($e);
     echo "¡Conexión fallida!";
 }
-$URL = "http://localhost/sistemaGO";
+$URL = "http://192.168.1.106/sistemaGO";
 //configuración de hora segun el pais
 date_default_timezone_set("America/Guatemala");
 $FechaHora = date('Y-m-d H:i:s');

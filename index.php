@@ -6,7 +6,8 @@ include('app/controllers/usuarios/listado_usuarios.php');
 include('app/controllers/roles/listado_roles.php');
 include('app/controllers/categorias/listado_categorias.php');
 include('app/controllers/almacen/listado_productos.php');
-
+include('app/controllers/proveedor/listado_proveedores.php');
+include('app/controllers/compra/listado_compras.php');
 ?>
 
 
@@ -17,7 +18,7 @@ include('app/controllers/almacen/listado_productos.php');
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-8">
-                    <h1 class="m-0">Bienvenido al sistema de ventas - <?php echo $rol_sesion ?></h1>
+                    <h1 class="m-0">Bienvenido al sistema de ventas - <?php echo $nombre_sesion ?></h1>
                 </div><!-- /.col -->
 
             </div><!-- /.row -->
@@ -33,9 +34,9 @@ include('app/controllers/almacen/listado_productos.php');
             <br></br>
             <div class="row">
                 <!-- ./col -->
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-6" style="color:white">
                     <!-- small card -->
-                    <div class="small-box bg-warning">
+                    <div class=" small-box" style="background-color:#5E2E91; ">
                         <div class="inner">
                             <?php
                             $contador_usuarios = 0;
@@ -47,8 +48,8 @@ include('app/controllers/almacen/listado_productos.php');
                             <p>Usuarios registrados</p>
                         </div>
                         <a href="<?php echo $URL; ?>/usuarios/crear.php">
-                            <div class="icon">
-                                <i class="fas fa-user-plus"></i>
+                            <div class="icon" style="color:white">
+                                <i class="fi fi-rr-user-add"></i>
                             </div>
                         </a>
                         <a href="<?php echo $URL; ?>/usuarios" class="small-box-footer">
@@ -57,9 +58,9 @@ include('app/controllers/almacen/listado_productos.php');
                     </div>
                 </div>
                 <!-- ./col -->
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-6" style="color:white">
                     <!-- small card -->
-                    <div class="small-box bg-info">
+                    <div class=" small-box" style="background-color:#F39C12; ">
                         <div class="inner">
                             <?php
                             $contador_roles = 0;
@@ -71,8 +72,8 @@ include('app/controllers/almacen/listado_productos.php');
                             <p>Roles registrados</p>
                         </div>
                         <a href="<?php echo $URL; ?>/roles/crear.php">
-                            <div class="icon">
-                                <i class="fas fa-user-plus"></i>
+                            <div class="icon" style="color:white">
+                                <i class="fi fi-rr-id-card-clip-alt"></i>
                             </div>
                         </a>
                         <a href="<?php echo $URL; ?>/roles" class="small-box-footer">
@@ -81,13 +82,13 @@ include('app/controllers/almacen/listado_productos.php');
                     </div>
                 </div>
                 <!-- ./col -->
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-6" style="color:white">
                     <!-- small card -->
-                    <div class="small-box bg-success">
+                    <div class=" small-box" style="background-color:#7B4B9E; ">
                         <div class="inner">
                             <?php
                             $contador_categorias = 0;
-                            foreach ($datos_categorias as $dato_roles) {
+                            foreach ($datos_categorias as $dato_categoria) {
                                 $contador_categorias = $contador_categorias + 1;
                             }
                             ?>
@@ -95,8 +96,8 @@ include('app/controllers/almacen/listado_productos.php');
                             <p>Categorías registradas</p>
                         </div>
                         <a href="<?php echo $URL; ?>/categorias">
-                            <div class="icon">
-                                <i class="fas fa-user-plus"></i>
+                            <div class="icon" style="color:white">
+                                <i class="fi fi-rr-tags"></i>
                             </div>
                         </a>
                         <a href="<?php echo $URL; ?>/categorias" class="small-box-footer">
@@ -107,7 +108,7 @@ include('app/controllers/almacen/listado_productos.php');
                 <!-- ./col -->
                 <div class="col-lg-3 col-6" style="color:white">
                     <!-- small card -->
-                    <div class=" small-box bg-" style="background-color:blue; ">
+                    <div class=" small-box" style="background-color:#F7B24A; ">
                         <div class="inner">
                             <?php
                             $contador_productos = 0;
@@ -119,18 +120,67 @@ include('app/controllers/almacen/listado_productos.php');
                             <p>Productos registrados</p>
                         </div>
                         <a href="<?php echo $URL; ?>/almacen/crear.php">
-                            <div class="icon">
-                                <i class="fas fa-user-plus"></i>
+                            <div class="icon" style="color:white">
+                                <i class="fi fi-rr-apps-add"></i>
                             </div>
                         </a>
-                        <a href="<?php echo $URL; ?>/almacen" class="small-box-footer">
+                        <a href="<?php echo $URL; ?>/almacen" class="small-box-footer" style="color:white">
                             Mas información <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>
                 </div>
-
                 <!-- ./col -->
             </div>
+            <div class="row">
+                <div class="col-lg-3 col-6" style="color:white">
+                    <!-- small card -->
+                    <div class=" small-box bg-" style="background-color:#F7B24A;  ">
+                        <div class="inner">
+                            <?php
+                            $contador_proveedores = 0;
+                            foreach ($datos_proveedores as $dato_proveedor) {
+                                $contador_proveedores = $contador_proveedores + 1;
+                            }
+                            ?>
+                            <h3><?php echo $contador_proveedores; ?></h3>
+                            <p>Proveedores registrados</p>
+                        </div>
+                        <a href="<?php echo $URL; ?>/proveedor">
+                            <div class="icon" style="color:white">
+                                <i class="fi fi-rr-supplier"></i>
+                            </div>
+                        </a>
+                        <a href="<?php echo $URL; ?>/proveedor" class="small-box-footer" style="color:white">
+                            Mas información <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6" style="color:white">
+                    <!-- small card -->
+                    <div class=" small-box bg-" style="background-color:#7B4B9E;     ">
+                        <div class="inner">
+                            <?php
+                            $contador_compra = 0;
+                            foreach ($datos_compras as $dato_compra) {
+                                $contador_compra = $contador_compra + 1;
+                            }
+                            ?>
+                            <h3><?php echo $contador_compra; ?></h3>
+                            <p>Compras registradas</p>
+                        </div>
+                        <a href="<?php echo $URL; ?>/compra">
+                            <div class="icon" style="color:white">
+                                <i class="fi fi-rr-bags-shopping"></i>
+                            </div>
+                        </a>
+                        <a href="<?php echo $URL; ?>/compra" class="small-box-footer" style="color:white">
+                            Mas información <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- ./col -->
+
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->

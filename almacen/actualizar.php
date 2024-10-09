@@ -117,19 +117,19 @@ include('../app/controllers/almacen/cargar_producto.php');
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label for="">Precio compra</label>
-                                                            <input name="Compra" class="form-control" value="<?php echo $PrecioCompra; ?>" type="number" placeholder="Q" required>
+                                                            <input name="Compra" class="form-control" value="<?php echo $PrecioCompra; ?>" type="number" step="0.01" placeholder="Q" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label for="">Precio venta</label>
-                                                            <input name="Venta" class="form-control" value="<?php echo $PrecioVenta; ?>" type="number" placeholder="Q" required>
+                                                            <input name="Venta" class="form-control" value="<?php echo $PrecioVenta; ?>" type="number" step="0.01" placeholder="Q" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label for="">Precio mayorista</label>
-                                                            <input name="Mayorista" class="form-control" value="<?php echo $PrecioMayorista; ?>" type="number" placeholder="Q" required>
+                                                            <input name="Mayorista" class="form-control" value="<?php echo $PrecioMayorista; ?>" type="number" step="0.01" placeholder="Q" required>
                                                         </div>
                                                     </div>
                                                 </div>

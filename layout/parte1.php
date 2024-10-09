@@ -173,6 +173,48 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </li>
                             </ul>
                         </li>
+                        <!--Integración del modulo almacen-->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">
+                                <i class="i fi-rr-supplier-alt"></i>
+                                <p>
+                                    Proveedores
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo $URL; ?>/proveedor" class="nav-link active">
+                                        <i class="fi fi-rr-supplier"></i>
+                                        <p style="color: black;">Proveedores registrados</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--Integración del modulo almacen-->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">
+                                <i class="fi fi-rr-shopping-bag"></i>
+                                <p>
+                                    Compras
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo $URL; ?>/compra" class="nav-link active">
+                                        <i class="fi fi-rr-bags-shopping"></i>
+                                        <p style="color: black;">Compras registradas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo $URL; ?>/compra/crear.php" class="nav-link active">
+                                        <i class="fi fi-rr-shopping-bag-add"></i>
+                                        <p style="color: black;">Crear compra</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         <li class="nav-item">
                             <a href="<?php echo $URL; ?>/app/controllers/login/cerrar_sesion.php" class="nav-link active" style="background-color: #ca0a0b">
                                 <i class="fi fi-rr-sign-out-alt"></i>
