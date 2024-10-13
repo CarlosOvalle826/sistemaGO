@@ -6,6 +6,45 @@ include('../layout/parte1.php');
 include('../app/controllers/almacen/listado_productos.php');
 
 ?>
+<style>
+    .tooltip-text {
+        visibility: hidden;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        padding: 5px;
+        border-radius: 5px;
+
+        /* Posicionamiento */
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        /* Muestra el mensaje encima del elemento */
+        left: 50%;
+        transform: translateX(-50%);
+
+        /* Flecha del tooltip */
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .tooltip-text::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        /* Posiciona la flecha debajo del tooltip */
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: black transparent transparent transparent;
+    }
+
+    .stock-message:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+    }
+</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -112,7 +151,39 @@ include('../app/controllers/almacen/listado_productos.php');
                                                 </td>
                                                 <td> <?php echo $dato_producto['Nombre']; ?></td>
                                                 <td> <?php echo $dato_producto['Descripcion']; ?></td>
-                                                <td> <?php echo $dato_producto['Stock']; ?></td><!--opciones-->
+                                                <!--alertas en stock-->
+                                                <?php
+                                                $StockAct = $dato_producto['Stock'];
+                                                $StockMax = $dato_producto['StockMaximo'];
+                                                $StockMin = $dato_producto['StockMinimo'];
+                                                if ($StockAct < $StockMin) { ?> <!--alerta naranja-->
+                                                    <td class="stock-message" style="position: relative; background-color: #fd7e14;">
+                                                        <div>
+                                                            <?php echo $dato_producto['Stock']; ?>
+                                                            <span class="tooltip-text">Reabastecer urgente</span>
+                                                        </div>
+                                                    </td><!--opciones-->
+                                                <?php
+                                                } else if ($StockAct > $StockMax) { ?><!--sobrecarga azul-->
+                                                    <td class="stock-message" style="position: relative; background-color: #17a2b8;">
+                                                        <div>
+                                                            <?php echo $dato_producto['Stock']; ?>
+                                                            <span class="tooltip-text">Exceso de stock</span>
+                                                        </div>
+                                                    </td><!--opciones-->
+                                                <?php
+                                                } else if ($StockAct == $StockMin) { ?><!--advertencia amarillo-->
+                                                    <td class="stock-message" style="position: relative; background-color: #ffc107;">
+                                                        <div>
+                                                            <?php echo $dato_producto['Stock']; ?>
+                                                            <span class="tooltip-text">Stock bajo</span>
+                                                        </div>
+                                                    </td><!--opciones-->
+                                                <?php
+                                                } else { ?>
+                                                    <td> <?php echo $dato_producto['Stock']; ?></td>
+                                                <?php
+                                                } ?>
                                                 <td> <?php echo $dato_producto['PrecioCompra']; ?></td>
                                                 <td> <?php echo $dato_producto['PrecioVenta']; ?></td>
                                                 <td> <?php echo $dato_producto['PrecioMayorista']; ?></td>

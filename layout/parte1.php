@@ -21,6 +21,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!--<link rel="stylesheet" href="public/images/uicons-solid-rounded/css/uicons-solid-rounded.css">-->
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.5.1/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.5.1/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-straight/css/uicons-regular-straight.css'>
     <!-- DataTables -->
     <link rel="stylesheet" href="<?php echo $URL; ?>/public/templeates/AdminLTE-3.2.0/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="<?php echo $URL; ?>/public/templeates/AdminLTE-3.2.0/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -191,7 +192,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </li>
                             </ul>
                         </li>
-                        <!--Integración del modulo almacen-->
+                        <!--Integración del modulo de compras-->
                         <li class="nav-item">
                             <a href="#" class="nav-link active">
                                 <i class="fi fi-rr-shopping-bag"></i>
@@ -211,6 +212,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <a href="<?php echo $URL; ?>/compra/crear.php" class="nav-link active">
                                         <i class="fi fi-rr-shopping-bag-add"></i>
                                         <p style="color: black;">Crear compra</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--Integración del modulo de ventas-->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">
+                                <i class="fi fi-rs-comments-dollar"></i>
+                                <p>
+                                    Ventas
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo $URL; ?>/venta" class="nav-link active">
+                                        <i class="fi fi-rs-file-invoice-dollar"></i>
+                                        <p style="color: black;">Ventas registradas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo $URL; ?>/venta/crear.php" class="nav-link active">
+                                        <i class="fi fi-rr-shopping-cart-add"></i>
+                                        <p style="color: black;">Crear venta</p>
                                     </a>
                                 </li>
                             </ul>

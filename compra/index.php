@@ -293,9 +293,9 @@ include('../app/controllers/compra/listado_compras.php');
                                                     <center>
                                                         <!--Botones para controlar los registros-->
                                                         <div class="btn-group">
-                                                            <a href="mostrar.php?id=<?php echo $IdProducto; ?>" type="button" class="btn btn-outline-info btn-sm"><i class="fi fi-rr-magnifying-glass-eye"></i>Ver</a>
-                                                            <a href="actualizar.php?id=<?php echo $IdProducto; ?>" type="button" class="btn btn-outline-success btn-sm"><i class="fi fi-rr-pencil"></i>Editar</a>
-                                                            <a href="borrar.php?id=<?php echo $IdProducto; ?>" type="button" class="btn btn-outline-danger btn-sm"><i class="fi fi-rr-cross-circle"></i>Eliminar</a>
+                                                            <a href="mostrar.php?id=<?php echo $IdCompra; ?>" type="button" class="btn btn-outline-info btn-sm"><i class="fi fi-rr-magnifying-glass-eye"></i>Ver</a>
+                                                            <a href="actualizar.php?id=<?php echo $IdCompra; ?>" type="button" class="btn btn-outline-success btn-sm"><i class="fi fi-rr-pencil"></i>Editar</a>
+                                                            <a href="borrar.php?id=<?php echo $IdCompra; ?>" type="button" class="btn btn-outline-danger btn-sm"><i class="fi fi-rr-cross-circle"></i>Eliminar</a>
 
                                                         </div>
                                                     </center>

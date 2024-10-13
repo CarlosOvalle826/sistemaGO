@@ -35,8 +35,7 @@ if (($contador > 0) && password_verify($contrasena, $contrasena_tabla)) {
 
     // Redirigir al sistema
     //    header('Location: http://localhost/sistemaGO/index.php');
-    header('Location: http://192.168.1.106/sistemaGO/index.php'); // Reemplaza 192.168.x.x por la IP de tu PC
-
+    header('Location: ' . $URL . '/'); // 
     exit();  // Detener la ejecución después de la redirección
 } else {
     // Credenciales incorrectas

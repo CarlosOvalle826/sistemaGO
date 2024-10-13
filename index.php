@@ -8,6 +8,7 @@ include('app/controllers/categorias/listado_categorias.php');
 include('app/controllers/almacen/listado_productos.php');
 include('app/controllers/proveedor/listado_proveedores.php');
 include('app/controllers/compra/listado_compras.php');
+include('app/controllers/venta/listado_ventas.php');
 ?>
 
 
@@ -174,6 +175,29 @@ include('app/controllers/compra/listado_compras.php');
                             </div>
                         </a>
                         <a href="<?php echo $URL; ?>/compra" class="small-box-footer" style="color:white">
+                            Mas información <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6" style="color:white">
+                    <!-- small card -->
+                    <div class=" small-box bg-" style="background-color:#F39C12;     ">
+                        <div class="inner">
+                            <?php
+                            $contador_venta = 0;
+                            foreach ($datos_ventas as $dato_venta) {
+                                $contador_venta = $contador_venta + 1;
+                            }
+                            ?>
+                            <h3><?php echo $contador_venta; ?></h3>
+                            <p>Ventas registradas</p>
+                        </div>
+                        <a href="<?php echo $URL; ?>/venta/crear.php">
+                            <div class="icon" style="color:white">
+                                <i class="fi fi-rr-shopping-cart-add"></i>
+                            </div>
+                        </a>
+                        <a href="<?php echo $URL; ?>/venta" class="small-box-footer" style="color:white">
                             Mas información <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>
