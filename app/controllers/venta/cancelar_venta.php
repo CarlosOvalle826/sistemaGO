@@ -27,13 +27,31 @@ if (isset($_POST['IdVenta'])) {
                 echo json_encode(['success' => false, 'message' => 'Esta venta ya está cancelada.']);
             } elseif ($estadoActual === 'COMPLETADA') {
                 // Si la venta está completada, proceder a la cancelación
-                // Actualizar el estado de la venta a cancelada
-                $stmt = $pdo->prepare("UPDATE tbventa SET Estado = 'CANCELADA' WHERE IdVenta = :idVenta");
+
+                // 3. Obtener los carritos asociados a la venta que estén completados
+                $stmt = $pdo->prepare("SELECT IdCarrito, IdProducto, Cantidad FROM tbcarrito WHERE IdVenta = :idVenta AND Estado = 'COMPLETADA'");
+                $stmt->bindParam(':idVenta', $idVenta, PDO::PARAM_INT);
+                $stmt->execute();
+                $carritosCompletados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                // 4. Actualizar el stock solo para los carritos con estado "COMPLETADA"
+                foreach ($carritosCompletados as $carrito) {
+                    $idProducto = $carrito['IdProducto'];
+                    $cantidad = $carrito['Cantidad'];
+
+                    // Aumentar el stock del producto
+                    $stmt = $pdo->prepare("UPDATE tbalmacen SET Stock = Stock + :cantidad WHERE IdProducto = :idProducto");
+                    $stmt->bindParam(':cantidad', $cantidad, PDO::PARAM_INT);
+                    $stmt->bindParam(':idProducto', $idProducto, PDO::PARAM_INT);
+                    $stmt->execute();
+                }
+
+                // 5. Actualizar el estado de los carritos y la venta a "CANCELADA"
+                $stmt = $pdo->prepare("UPDATE tbcarrito SET Estado = 'CANCELADA' WHERE IdVenta = :idVenta AND Estado = 'COMPLETADA'");
                 $stmt->bindParam(':idVenta', $idVenta, PDO::PARAM_INT);
                 $stmt->execute();
 
-                // Actualizar los registros asociados en la tabla carrito
-                $stmt = $pdo->prepare("UPDATE tbcarrito SET Estado = 'CANCELADA' WHERE IdVenta = :idVenta");
+                $stmt = $pdo->prepare("UPDATE tbventa SET Estado = 'CANCELADA' WHERE IdVenta = :idVenta");
                 $stmt->bindParam(':idVenta', $idVenta, PDO::PARAM_INT);
                 $stmt->execute();
 
@@ -41,9 +59,9 @@ if (isset($_POST['IdVenta'])) {
                 $pdo->commit();
 
                 // Devolver respuesta exitosa
-                echo json_encode(['success' => true, 'message' => 'La venta ha sido cancelada exitosamente.']);
+                echo json_encode(['success' => true, 'message' => 'La venta ha sido cancelada exitosamente y el stock ha sido actualizado para los carritos completados.']);
             } else {
-                // Para otros estados que pueden ser "pendiente", etc.
+                // Para otros estados que no sean COMPLETADA o CANCELADA
                 echo json_encode(['success' => false, 'message' => 'La venta no se puede cancelar en este momento.']);
             }
         }

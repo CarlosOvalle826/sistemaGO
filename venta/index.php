@@ -59,6 +59,9 @@ include('../app/controllers/venta/cargar_detalle.php');
                                                 <center>Fecha</center>
                                             </th>
                                             <th>
+                                                <center>Estado</center>
+                                            </th>
+                                            <th>
                                                 <center>Acción</center>
                                             </th>
                                         </tr>
@@ -87,6 +90,9 @@ include('../app/controllers/venta/cargar_detalle.php');
                                                 </td>
                                                 <td>
                                                     <center><?= $dato_detalle['FechaCreacion']; ?></center>
+                                                </td>
+                                                <td>
+                                                    <center><?= $dato_detalle['Estado']; ?></center>
                                                 </td>
                                                 <td>
                                                     <center>
@@ -137,13 +143,26 @@ include('../app/controllers/venta/cargar_detalle.php');
                                                                     // Iterar sobre los datos y crear filas para la tabla
                                                                     data.forEach(function(venta) {
                                                                         // Crear una nueva fila
-                                                                        let row =
-                                                                            ` <tr><td>${venta.IdVenta}</td><td>${venta.Nombre}</td><td>${venta.Descripcion}</td><td>${venta.Cantidad}</td><td>${venta.PrecioUnitario}</td></tr>`;
-
+                                                                        let row = `<tr>
+            <td>${venta.IdVenta}</td>
+            <td>${venta.IdCarrito}</td>            
+            <td>    
+                <button id="btn_seleccionar_carrito_${venta.IdCarrito}"
+                class="btn btn-danger btn-sm" 
+                data-id="${venta.IdCarrito}">
+                Cancelar</button>
+            </td>
+            <td>${venta.Nombre}</td>
+            <td>${venta.Descripcion}</td>
+            <td>${venta.Cantidad}</td>
+            <td>${venta.PrecioUnitario}</td>
+        </tr>`;
                                                                         // Agregar la fila al cuerpo de la tabla
                                                                         tableBody.innerHTML += row;
                                                                     });
                                                                 }
+
+
                                                             });
                                                         </script>
                                                         <div class="modal fade" id="modal_mostrar_detalle">
@@ -162,8 +181,13 @@ include('../app/controllers/venta/cargar_detalle.php');
                                                                             <thead>
                                                                                 <tr>
                                                                                     <th>
-                                                                                        <center>IdVenta</center>
+                                                                                        <center>No. venta</center>
                                                                                     </th>
+                                                                                    <th>
+                                                                                        <center>No. Detalle</center>
+                                                                                    </th>
+                                                                                    <th>
+                                                                                        <center>Acción</center>
                                                                                     <th>
                                                                                         <center>Nombre</center>
                                                                                     </th>
@@ -234,6 +258,44 @@ include('../app/controllers/venta/cargar_detalle.php');
                                             </tr>
                                         <?php } ?>
                                     </tbody>
+                                    <script>
+                                        $(document).on('click', '[id^=btn_seleccionar_carrito_]', function() {
+                                            // Obtener el IdCarrito del botón clicado
+                                            var IdCarrito = $(this).data('id');
+
+                                            // Ahora puedes usar el IdCarrito en otras funciones
+                                            console.log("ID Carrito:", IdCarrito);
+
+                                            // Si deseas, puedes llamar a otra función pasando el IdCarrito
+                                            cancelarCarrito(IdCarrito);
+                                        });
+
+
+
+                                        function cancelarCarrito(IdCarrito) {
+                                            if (confirm("¿Estás seguro de que deseas cancelar este producto?")) {
+                                                $.ajax({
+                                                    url: '../app/controllers/venta/cancelar_carrito.php', // Ruta a tu controlador
+                                                    type: 'POST',
+                                                    data: {
+                                                        IdCarrito: IdCarrito
+                                                    }, // Enviar el ID del carrito al servidor
+                                                    success: function(response) {
+                                                        var result = JSON.parse(response);
+                                                        alert(result.message); // Mostrar el mensaje retornado por el servidor
+                                                        if (result.success) {
+                                                            // Aquí puedes recargar la tabla o eliminar la fila del carrito cancelado
+                                                            location.reload(); // O actualizar la tabla de alguna otra manera
+                                                        }
+                                                    },
+                                                    error: function(jqXHR, textStatus, errorThrown) {
+                                                        console.error("Error en la solicitud: " + textStatus, errorThrown);
+                                                        alert("Hubo un error al cancelar el carrito.");
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    </script>
                                     <!--Pie de la tabla-->
                                     <tfoot>
                                         <tr>
@@ -251,6 +313,9 @@ include('../app/controllers/venta/cargar_detalle.php');
                                             </th>
                                             <th>
                                                 <center>Fecha</center>
+                                            </th>
+                                            <th>
+                                                <center>Estado</center>
                                             </th>
                                             <th>
                                                 <center>Acción</center>
