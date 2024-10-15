@@ -56,6 +56,9 @@ include('../app/controllers/venta/cargar_detalle.php');
                                                 <center>Total pagado</center>
                                             </th>
                                             <th>
+                                                <center>Fecha</center>
+                                            </th>
+                                            <th>
                                                 <center>Acción</center>
                                             </th>
                                         </tr>
@@ -81,6 +84,9 @@ include('../app/controllers/venta/cargar_detalle.php');
                                                 </td>
                                                 <td>
                                                     <center><?= $dato_detalle['TotalPago']; ?></center>
+                                                </td>
+                                                <td>
+                                                    <center><?= $dato_detalle['FechaCreacion']; ?></center>
                                                 </td>
                                                 <td>
                                                     <center>
@@ -173,8 +179,8 @@ include('../app/controllers/venta/cargar_detalle.php');
                                                                                 </tr>
                                                                             </thead>
                                                                             <!--Contenido de la tabla-->
-                                                                            <tbody id="productTableBody"">
-                                                                                
+                                                                            <tbody id="productTableBody">
+
                                                                             </tbody>
                                                                         </table>
                                                                     </div>
@@ -184,8 +190,45 @@ include('../app/controllers/venta/cargar_detalle.php');
                                                             </div>
                                                             <!-- /.modal -->
                                                         </div>
-                                                        <button type=" button" class="btn btn-danger"><i class="fi fi-rr-delete"></i>Eliminar</button>
+                                                        <button id="btnCancelarVenta<?php echo $IdVenta; ?>" type=" button" class="btn btn-danger"><i class="fi fi-rr-delete"></i>Anular venta</button>
+                                                        <!--permite cancelar el estado de la venta-->
+                                                        <script>
+                                                            $('#btnCancelarVenta<?php echo $IdVenta; ?>').click(function(event) {
+                                                                event.preventDefault();
 
+                                                                // Confirmación para evitar cancelaciones accidentales
+                                                                var confirmacion = confirm("¿Estás seguro de que deseas cancelar esta venta?");
+                                                                if (confirmacion) {
+                                                                    // Aquí debes obtener el ID de la venta que deseas cancelar
+                                                                    var idVenta = '<?php echo $IdVenta; ?>' // Suponiendo que tienes el IdVenta en un input hidden o en algún otro lugar
+
+                                                                    // Enviar solicitud AJAX para cancelar la venta
+                                                                    $.ajax({
+                                                                        url: '../app/controllers/venta/cancelar_venta.php', // Cambia la URL según la ubicación de tu script
+                                                                        type: 'POST',
+                                                                        data: {
+                                                                            IdVenta: idVenta
+                                                                        },
+                                                                        success: function(response) {
+                                                                            // Manejar la respuesta del servidor
+                                                                            var result = JSON.parse(response);
+                                                                            if (result.success) {
+                                                                                alert(result.message); // Mostrar mensaje de éxito
+                                                                                // Aquí puedes actualizar la interfaz, por ejemplo, eliminando la venta de la tabla o recargando la página
+                                                                                location.reload(); // Recargar la página para actualizar los datos visibles
+                                                                            } else {
+                                                                                alert(result.message); // Mostrar mensaje de error
+                                                                            }
+                                                                        },
+                                                                        error: function(jqXHR, textStatus, errorThrown) {
+                                                                            // Manejar errores de la solicitud AJAX
+                                                                            console.error("Error en la solicitud: " + textStatus, errorThrown);
+                                                                            alert("Hubo un error al cancelar la venta. Inténtalo de nuevo.");
+                                                                        }
+                                                                    });
+                                                                }
+                                                            });
+                                                        </script>
                                                     </center>
                                                 </td>
                                             </tr>
@@ -205,6 +248,9 @@ include('../app/controllers/venta/cargar_detalle.php');
                                             </th>
                                             <th>
                                                 <center>Total pagado</center>
+                                            </th>
+                                            <th>
+                                                <center>Fecha</center>
                                             </th>
                                             <th>
                                                 <center>Acción</center>

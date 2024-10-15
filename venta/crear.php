@@ -6,8 +6,6 @@ include('../layout/parte1.php');
 include('../app/controllers/almacen/listado_productos.php');
 //consulta a la base de datos sobre la tabla usuario
 include('../app/controllers/venta/listado_ventas.php');
-//consulta a la base de datos sobre la tabla cliente
-include('../app/controllers/cliente/listado_clientes.php');
 ?>
 <!-- Incluye Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -454,40 +452,65 @@ include('../app/controllers/cliente/listado_clientes.php');
                         <!-- /.card-header -->
                         <div class="card-body">
                             <b>Cliente </b>
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target=" #modal_buscar_cliente">
+                            <button type="button" class="btn btn-primary" id="btn_mostrar_clientes">
                                 <i class="fa fa-search"></i>
                                 Buscar cliente
                             </button>
-                            <!--Modal para visualizar proveedor-->
+                            <!--boton para añadir un nuevo cliente a la base de datos-->
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#modal_agregar_cliente">
+                                <i class="fi fi-rr-add"></i>
+                                Añadir cliente
+                            </button>
+                            <script>
+                                // Capturar clic en el botón específico
+                                $('#btn_mostrar_clientes').on('click', function() {
+                                    // Llamar a la función que obtiene los datos de la venta
+                                    loadClients();
+                                });
+                            </script>
+                            <!--Modal para buscar a los clientes en la base de datos-->
                             <div class="modal fade" id="modal_buscar_cliente">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header" style="background-color:cornflowerblue; color: white">
                                             <h4 class="modal-title">Busqueda del cliente </h4>
                                             <div style="width:10px"></div>
-                                            <!--boton para añadir un nuevo cliente a la base de datos-->
-                                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                data-target=" #modal_agregar_cliente">
-                                                <i class="fi fi-rr-add"></i>
-                                                Añadir cliente
-                                            </button>
+
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
+
                                         <div class="modal-body">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="">Buscar usuario</label>
+                                                    <input type="text" id="searchInput" class="form-control" placeholder="Buscar..." />
+                                                    <script>
+                                                        // Función para filtrar los registros de la tabla según lo ingresado en el campo de búsqueda
+                                                        $('#searchInput').on('keyup', function() {
+                                                            var value = $(this).val().toLowerCase(); // Convertir el valor ingresado a minúsculas
+                                                            $('#example2 tbody tr').filter(function() {
+                                                                // Comparar cada fila con el valor ingresado
+                                                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                                                            });
+                                                        });
+                                                    </script>
+                                                </div>
+                                            </div>
+
                                             <div class="table table-responsive" style="height: 250px; overflow-y: auto;">
                                                 <!--tabla completa-->
                                                 <table id="example2" class="table table-bordered table-striped table-sm" style="font-size: 14px">
                                                     <!--Cabecera de la tabla-->
                                                     <thead>
                                                         <tr>
-                                                            <th>
-                                                                <center>No.</center>
-                                                            </th>
                                                             <td>
-                                                                <center>Seleccionar</center>
+                                                                <center>IdCliente</center>
+                                                            </td>
+                                                            <td>
+                                                                <center>Acción</center>
                                                             </td>
                                                             <th>
                                                                 <center>Nombre cliente</center>
@@ -504,55 +527,12 @@ include('../app/controllers/cliente/listado_clientes.php');
                                                         </tr>
                                                     </thead>
                                                     <!--Contenido de la tabla-->
-                                                    <tbody>
-                                                        <?php
-                                                        $contador_cliente = 0;
-                                                        foreach ($datos_clientes as $dato_cliente) {
-                                                            //crear una variable para almacenar el ID de producto
-                                                            $IdCliente   = $dato_cliente['IdCliente'];
-                                                            $contador_cliente = $contador_cliente + 1; ?>
-                                                            <tr>
-                                                                <td>
-                                                                    <center><?= $contador_cliente ?></center>
-                                                                </td>
-                                                                <td>
-                                                                    <center>
-                                                                        <button id="btn_seleccionar_cliente<?= $IdCliente; ?>" class="btn btn-info">Seleccionar</button>
-                                                                        <script>
-                                                                            $('#btn_seleccionar_cliente<?= $IdCliente; ?>').click(function() {
-                                                                                var IdCliente = '<?= $dato_cliente['IdCliente']; ?>';
-                                                                                $('#IdCliente').val(IdCliente);
-                                                                                var NombreCliente = '<?= $dato_cliente['NombreCliente']; ?>';
-                                                                                $('#nombre_cliente').val(NombreCliente);
-                                                                                var NitCliente = '<?= $dato_cliente['NitCliente']; ?>';
-                                                                                $('#nit_cliente').val(NitCliente);
-                                                                                var CelularCliente = '<?= $dato_cliente['CelularCliente']; ?>';
-                                                                                $('#celular_cliente').val(CelularCliente);
-                                                                                var CorreoCliente = '<?= $dato_cliente['CorreoCliente']; ?>';
-                                                                                $('#correo_cliente').val(CorreoCliente);
-                                                                            });
-                                                                        </script>
-                                                                    </center>
-                                                                </td>
-                                                                <td>
-                                                                    <center><?= $dato_cliente['NombreCliente'] ?></center>
-                                                                </td>
-                                                                <td>
-                                                                    <center><?= $dato_cliente['NitCliente'] ?></center>
-                                                                </td>
-                                                                <td>
-                                                                    <center><?= $dato_cliente['CelularCliente'] ?></center>
-                                                                </td>
-                                                                <td>
-                                                                    <center><?= $dato_cliente['CorreoCliente'] ?></center>
-                                                                </td>
-                                                            </tr>
+                                                    <tbody id="clienteTableBody">
 
-                                                        <?php
-                                                        } ?>
                                                     </tbody>
                                                     <!--Pie de la tabla-->
                                                 </table>
+
                                             </div>
                                         </div>
                                         <!-- /.modal-content -->
@@ -655,12 +635,14 @@ include('../app/controllers/cliente/listado_clientes.php');
                                             $('#tabla_productos tbody tr').each(function() {
                                                 var idProducto = $(this).find('td').eq(0).text();
                                                 var cantidad = $(this).find('td').eq(3).text();
+                                                var precioUnit = $(this).find('td').eq(4).text();
 
                                                 // Validar que el idProducto y cantidad no estén vacíos
                                                 if (idProducto && cantidad && cantidad > 0) {
                                                     productos.push({
                                                         idProducto: idProducto,
-                                                        cantidad: cantidad
+                                                        cantidad: cantidad,
+                                                        precioUnit: precioUnit
                                                     });
                                                 }
                                             });
@@ -690,6 +672,13 @@ include('../app/controllers/cliente/listado_clientes.php');
                                                             // Limpiar la tabla de productos
                                                             $('#tabla_productos tbody').empty();
                                                             $('#total_a_pagar').val('');
+                                                            $('#IdCliente').val('');
+                                                            $('#nombre_cliente').val('');
+                                                            $('#nit_cliente').val('');
+                                                            $('#celular_cliente').val('');
+                                                            $('#correo_cliente').val('');
+                                                            $('#pagado').val('');
+                                                            $('#cambio').val('');
                                                         });
                                                     } else {
                                                         Swal.fire("Error", result.message, "error");
@@ -758,40 +747,8 @@ include('../layout/mensaje.php');
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
     });
-    $(function() {
-        $("#example2").DataTable({
-            /* cambio de idiomas de datatable */
-            "pageLength": 5,
-            language: {
-                "emptyTable": "No hay información",
-                "decimal": "",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ Clientes",
-                "infoEmpty": "Mostrando 0 to 0 de 0 Clientes",
-                "infoFiltered": "(Filtrado de _MAX_ Total clientes)",
-                "infoPostFix": "",
-                "thousands": ",",
-                "lengthMenu": "Mostrar _MENU_ Clientes",
-                "loadingRecords": "Cargando...",
-                "processing": "Procesando...",
-                "search": "Buscador:",
-                "zeroRecords": "Sin resultados encontrados",
-                "paginate": {
-                    "first": "Primero",
-                    "last": "Ultimo",
-                    "next": "Siguiente",
-                    "previous": "Anterior"
-                }
-            },
-            /* fin de idiomas */
-            "responsive": true,
-            "lengthChange": true,
-            "autoWidth": false,
-
-        }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
-
-    });
 </script>
-<!--Modal para visualizar clientes-->
+<!--Modal para agregar clientes-->
 <div class="modal fade" id="modal_agregar_cliente">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -803,29 +760,87 @@ include('../layout/mensaje.php');
                 </button>
             </div>
             <div class="modal-body">
-                <form action="../app/controllers/cliente/guardar_cliente.php" method="post">
+                <div id="clienteContainer">
                     <div class="form-group">
-                        <label for="my-input">Nombre del cliente</label>
-                        <input id="NombreCliente" class="form-control" type="text" name="NombreCliente">
+                        <label for="NombreCliente">Nombre del cliente</label>
+                        <input id="NombreCliente" class="form-control" type="text" name="NombreCliente" required>
                     </div>
                     <div class="form-group">
-                        <label for="my-input">Nit cliente</label>
-                        <input id="NITCliente" class="form-control" type="text" name="NITCliente">
+                        <label for="NITCliente">Nit cliente</label>
+                        <input id="NITCliente" class="form-control" type="text" name="NITCliente" required>
                     </div>
                     <div class="form-group">
-                        <label for="my-input">Celular</label>
-                        <input id="CelularCliente" class="form-control" type="text" name="CelularCliente">
+                        <label for="CelularCliente">Celular</label>
+                        <input id="CelularCliente" class="form-control" type="text" name="CelularCliente" required>
                     </div>
                     <div class="form-group">
-                        <label for="my-input">Correo</label>
-                        <input id="CorreoCliente" class="form-control" type="email" name="CorreoCliente">
+                        <label for="CorreoCliente">Correo</label>
+                        <input id="CorreoCliente" class="form-control" type="email" name="CorreoCliente" required>
                     </div>
                     <hr>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-default btn-block" style="background-color: orange;">Añadir cliente</button>
+                        <button id="btnGuardarCliente" class="btn btn-primary btn-block " style="background-color: orange;">Guardar Cliente</button>
+                        <script>
+                            $('#btnGuardarCliente').click(function(event) {
+                                // Recuperar los valores de los campos del formulario
+                                var NombreCliente = $('#NombreCliente').val();
+                                var NITCliente = $('#NITCliente').val();
+                                var CelularCliente = $('#CelularCliente').val();
+                                var CorreoCliente = $('#CorreoCliente').val();
 
+                                // Validar que todos los campos estén completos
+                                if (NombreCliente == '') {
+                                    $('#NombreCliente').focus();
+                                    alert('Debe completar todos los campos');
+                                } else if (NITCliente == '') {
+                                    $('#NITCliente').focus();
+                                    alert('Debe completar todos los campos');
+                                } else {
+                                    // Enviar los datos al servidor usando fetch con método POST
+                                    var url = "../app/controllers/cliente/guardar_cliente.php";
+
+                                    // Enviar la solicitud POST
+                                    $.post(url, {
+                                        NombreCliente: NombreCliente,
+                                        NITCliente: NITCliente,
+                                        CelularCliente: CelularCliente,
+                                        CorreoCliente: CorreoCliente
+                                    }, function(datos) {
+                                        // Manejar la respuesta del servidor
+                                        try {
+                                            var response = JSON.parse(datos); // Convertir la respuesta en un objeto JSON
+
+                                            if (response.success) {
+                                                // Mostrar un alert con el mensaje de éxito
+                                                alert(response.message);
+
+                                                // Limpiar los campos del formulario
+                                                $('#NombreCliente').val('');
+                                                $('#NITCliente').val('');
+                                                $('#CelularCliente').val('');
+                                                $('#CorreoCliente').val('');
+
+                                                // Cerrar el modal
+                                                $('#Modal_agregar_cliente').modal('hide');
+                                            } else {
+                                                // Mostrar mensaje de error si el servidor no devuelve success
+                                                alert("Error: " + response.message);
+                                            }
+                                        } catch (e) {
+                                            console.error("Error al procesar la respuesta: ", e);
+                                            alert("Error al procesar la respuesta del servidor.");
+                                        }
+
+                                    }).fail(function(jqXHR, textStatus, errorThrown) {
+                                        // Manejar errores
+                                        console.error("Error en la solicitud: " + textStatus, errorThrown);
+                                        alert("Hubo un problema con la solicitud: " + textStatus);
+                                    });
+                                }
+                            });
+                        </script>
                     </div>
-                </form>
+                </div>
             </div>
             <!-- /.modal-content -->
         </div>
@@ -833,3 +848,76 @@ include('../layout/mensaje.php');
     </div>
     <!-- /.modal -->
 </div>
+<script>
+    function loadClients() {
+        $.ajax({
+            url: '../app/controllers/cliente/listado_clientes.php', // Archivo PHP donde se obtiene la lista de clientes
+            type: 'POST', // Cambiado a POST
+            success: function(response) {
+                // Convertir la respuesta JSON
+                let data = JSON.parse(response);
+                console.log(data); // Para depuración
+
+                // Llamar a la función para agregar los datos a la tabla
+                agregarAClienteTabla(data);
+                // Mostrar el modal
+                $('#modal_buscar_cliente').modal('show');
+
+            },
+            error: function() {
+                alert('Error al cargar los clientes.');
+            }
+        });
+    }
+
+    // Función para agregar los registros a la tabla
+    function agregarAClienteTabla(data) {
+        // Obtener el cuerpo de la tabla
+        let tableBody = document.getElementById('clienteTableBody'); // Asegúrate de que este ID coincida con el de tu tabla
+
+        // Limpiar el contenido anterior de la tabla
+        tableBody.innerHTML = '';
+
+        // Iterar sobre los datos y crear filas para la tabla
+        data.forEach(function(cliente) {
+            // Crear una nueva fila
+            let row = `<tr>
+    <td>
+        <button id="btn_seleccionar_cliente_${cliente.IdCliente}" 
+                class="btn btn-info btn-sm"
+                data-id="${cliente.IdCliente}" 
+                data-nombre="${cliente.NombreCliente}" 
+                data-nit="${cliente.NitCliente}" 
+                data-celular="${cliente.CelularCliente}" 
+                data-correo="${cliente.CorreoCliente}">
+            Seleccionar
+        </button>
+    </td>
+    <td>${cliente.IdCliente}</td>
+    <td>${cliente.NombreCliente}</td>
+    <td>${cliente.NitCliente}</td>
+    <td>${cliente.CelularCliente}</td>
+    <td>${cliente.CorreoCliente}</td>
+</tr>`;
+
+            // Agregar la fila al cuerpo de la tabla
+            tableBody.innerHTML += row;
+        });
+    }
+</script>
+<script>
+    $(document).on('click', '[id^=btn_seleccionar_cliente_]', function() {
+        var IdCliente = $(this).data('id');
+        var NombreCliente = $(this).data('nombre');
+        var NitCliente = $(this).data('nit');
+        var CelularCliente = $(this).data('celular');
+        var CorreoCliente = $(this).data('correo');
+
+        // Rellenar los campos del formulario
+        $('#IdCliente').val(IdCliente);
+        $('#nombre_cliente').val(NombreCliente);
+        $('#nit_cliente').val(NitCliente);
+        $('#celular_cliente').val(CelularCliente);
+        $('#correo_cliente').val(CorreoCliente);
+    });
+</script>

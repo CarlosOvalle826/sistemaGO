@@ -47,18 +47,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $idVenta = $pdo->lastInsertId();
 
         // Insertar cada producto en tbcarrito y actualizar el stock
-        $sqlCarrito = "INSERT INTO tbcarrito (IdVenta, IdProducto, Cantidad, FechaCreacion) VALUES (:IdVenta, :IdProducto, :Cantidad, :FechaCreacion)";
+        $sqlCarrito = "INSERT INTO tbcarrito (IdVenta, IdProducto, Cantidad, PrecioUnitario, FechaCreacion) VALUES (:IdVenta, :IdProducto, :Cantidad, :PrecioUnitario, :FechaCreacion)";
         $sqlActualizarStock = "UPDATE tbalmacen SET Stock = Stock - :Cantidad WHERE IdProducto = :IdProducto";
 
         foreach ($productos as $producto) {
             $idProducto = $producto['idProducto'];
             $cantidad = $producto['cantidad'];
-
+            $precioUnit = $producto['precioUnit'];
             // Insertar en la tabla Carrito
             $stmtCarrito = $pdo->prepare($sqlCarrito);
             $stmtCarrito->bindParam(':IdVenta', $idVenta, PDO::PARAM_INT);
             $stmtCarrito->bindParam(':IdProducto', $idProducto, PDO::PARAM_INT);
             $stmtCarrito->bindParam(':Cantidad', $cantidad, PDO::PARAM_INT);
+            $stmtCarrito->bindParam(':PrecioUnitario', $precioUnit, PDO::PARAM_STR);
             $stmtCarrito->bindParam(':FechaCreacion', $fechaCreacion, PDO::PARAM_STR);
             $stmtCarrito->execute();
 
