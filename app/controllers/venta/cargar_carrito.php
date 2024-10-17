@@ -5,7 +5,7 @@ if (isset($_POST['id'])) {
 
     // Consulta para obtener los detalles de la venta
     $stmt = $pdo->prepare('SELECT tbc.IdVenta as IdVenta, tbc.IdCarrito as IdCarrito, tba.IdProducto as IdProducto, tba.Nombre as Nombre, tba.Descripcion as Descripcion, tbc.Cantidad as Cantidad,
-    tbc.PrecioUnitario as PrecioUnitario FROM tbcarrito as tbc INNER JOIN tbalmacen as tba ON tba.IdProducto=tbc.IdProducto WHERE IdVenta = ?');
+    tbc.PrecioUnitario as PrecioUnitario, tbc.Estado as Estado FROM tbcarrito as tbc INNER JOIN tbalmacen as tba ON tba.IdProducto=tbc.IdProducto WHERE IdVenta = ?');
     $stmt->execute([$ventaID]);
 
     // Obtener los resultados

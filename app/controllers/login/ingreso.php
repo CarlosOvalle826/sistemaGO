@@ -9,33 +9,22 @@ include('../../config.php');
 $correo = $_POST['correo'];
 $contrasena = $_POST['contrasena'];
 
-// Inicializar contador de usuarios
-$contador = 0;
-
 // Preparar y ejecutar la consulta
 $sql = "SELECT * FROM tbusuario WHERE CorreoUsuario = :correo";
 $query = $pdo->prepare($sql);
 $query->bindParam(':correo', $correo, PDO::PARAM_STR);
 $query->execute();
-$usuarios = $query->fetchAll(PDO::FETCH_ASSOC);
-
-// Procesar los resultados de la consulta
-foreach ($usuarios as $usuario) {
-    $contador++;
-    $correo_tabla = $usuario['CorreoUsuario'];
-    $nombres = $usuario['NombreUsuario'];
-    $contrasena_tabla = $usuario['ContrasenaUsuario'];
-}
+$usuario = $query->fetch(PDO::FETCH_ASSOC); // Cambiar a fetch para obtener solo un registro
 
 // Validar las credenciales del usuario
-if (($contador > 0) && password_verify($contrasena, $contrasena_tabla)) {
+if ($usuario && password_verify($contrasena, $usuario['ContrasenaUsuario'])) {
     // Credenciales válidas
+    $_SESSION['IdUsuario'] = $usuario['IdUsuario']; // Almacenar el ID de usuario en la sesión
     $_SESSION['sesion_correo'] = $correo;
-    $_SESSION['nombre_usuario'] = $nombres;
+    $_SESSION['nombre_usuario'] = $usuario['NombreUsuario'];
 
     // Redirigir al sistema
-    //    header('Location: http://localhost/sistemaGO/index.php');
-    header('Location: ' . $URL . '/'); // 
+    header('Location: ' . $URL . '/'); // Cambia esto según la ruta de tu sistema
     exit();  // Detener la ejecución después de la redirección
 } else {
     // Credenciales incorrectas

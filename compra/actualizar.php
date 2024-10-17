@@ -664,8 +664,6 @@ include('../app/controllers/compra/cargar_compra.php');
                                                         $('#CantidadCompra').focus();
                                                         alert('Debe completar todos lo campos');
                                                     } else {
-                                                        alert('datos ingresados');
-
                                                         var url = "../app/controllers/compra/actualizar.php";
                                                         $.get(url, {
                                                             ID_compra: ID_compra,

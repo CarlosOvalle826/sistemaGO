@@ -233,6 +233,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </li>
                             </ul>
                         </li>
+                        <!--Integración del modulo de ventas-->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">
+                                <i class="fi fi-rr-review"></i>
+                                <p>
+                                    Clientes
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo $URL; ?>/cliente" class="nav-link active">
+                                        <i class="fi fi-sr-skill"></i>
+                                        <p style="color: black;">Clientes registrados</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         <li class="nav-item">
                             <a href="<?php echo $URL; ?>/app/controllers/login/cerrar_sesion.php" class="nav-link active" style="background-color: #ca0a0b">
                                 <i class="fi fi-rr-sign-out-alt"></i>

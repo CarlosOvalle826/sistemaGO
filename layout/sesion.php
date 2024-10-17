@@ -1,5 +1,10 @@
 <?php
-session_start();
+
+// Verificar si ya hay una sesión activa antes de iniciar una nueva
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 if (isset($_SESSION['sesion_correo'])) {
     // echo "Si existe sesion " . $_SESSION['sesion_correo'];
     $correo_sesion = $_SESSION['sesion_correo'];

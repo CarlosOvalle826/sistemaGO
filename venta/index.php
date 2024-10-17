@@ -1,4 +1,14 @@
 <?php
+//consulta a la base de datos sobre la tabla usuario
+include('../app/controllers/login/controlador_autorizacion.php');
+
+if (!verificarAcceso('Ventas')) {
+    // Denegar acceso
+    header('Location: acceso_denegado.php');
+    exit;  // Detener la ejecución después de redirigir
+}
+?>
+<?php
 include('../app/config.php');
 include('../layout/sesion.php');
 include('../layout/parte1.php');
@@ -156,6 +166,7 @@ include('../app/controllers/venta/cargar_detalle.php');
             <td>${venta.Descripcion}</td>
             <td>${venta.Cantidad}</td>
             <td>${venta.PrecioUnitario}</td>
+            <td>${venta.Estado}</td>
         </tr>`;
                                                                         // Agregar la fila al cuerpo de la tabla
                                                                         tableBody.innerHTML += row;
@@ -199,6 +210,9 @@ include('../app/controllers/venta/cargar_detalle.php');
                                                                                     </th>
                                                                                     <th>
                                                                                         <center>Precio unitario</center>
+                                                                                    </th>
+                                                                                    <th>
+                                                                                        <center>Estado</center>
                                                                                     </th>
                                                                                 </tr>
                                                                             </thead>

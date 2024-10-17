@@ -1,4 +1,11 @@
 <?php
+include('../app/controllers/login/controlador_autorizacion.php');
+
+if (!verificarAcceso('Ventas')) {
+    // Denegar acceso
+    header('Location: acceso_denegado.php');
+    exit;  // Detener la ejecución después de redirigir
+}
 include('../app/config.php');
 include('../layout/sesion.php');
 include('../layout/parte1.php');
