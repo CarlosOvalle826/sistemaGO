@@ -1,6 +1,15 @@
 <?php
 include('../app/config.php');
 include('../layout/sesion.php');
+//consulta a la base de datos sobre la tabla usuario
+include('../app/controllers/login/controlador_autorizacion.php');
+
+if (!verificarAcceso('Usuarios')) {
+    // Denegar acceso y redirigir
+    // Si no tiene acceso, redirigir a una página de acceso denegado
+    header('Location: ' . $URL . '/acceso_denegado.php');
+    exit;  // Detener la ejecución después de redirigi
+}
 include('../layout/parte1.php');
 include('../app/controllers/usuarios/actualizar_usuario.php');
 include('../app/controllers/roles/listado_roles.php');

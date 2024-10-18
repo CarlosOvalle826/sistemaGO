@@ -10,7 +10,8 @@ INNER JOIN tbalmacen as prod ON com.IdProducto=prod.IdProducto
 INNER JOIN tbcategoria as cat ON cat.IdCategoria=prod.IdCategoria 
 INNER JOIN tbusuario as us ON us.IdUsuario = prod.IdUsuario 
 INNER JOIN tbusuario as uss ON com.IdUsuario = uss.IdUsuario
-INNER JOIN tbproveedor as prov ON com.IdProveedor = prov.IdProveedor";
+INNER JOIN tbproveedor as prov ON com.IdProveedor = prov.IdProveedor
+ORDER BY com.IdCompra";
 $query_compras = $pdo->prepare($sql_compras);
 $query_compras->execute();
 $datos_compras = $query_compras->fetchAll(PDO::FETCH_ASSOC);

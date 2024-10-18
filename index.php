@@ -9,6 +9,7 @@ include('app/controllers/almacen/listado_productos.php');
 include('app/controllers/proveedor/listado_proveedores.php');
 include('app/controllers/compra/listado_compras.php');
 include('app/controllers/venta/listado_ventas.php');
+include('app/controllers/cliente/mostrar_cantidad.php');
 ?>
 
 
@@ -18,8 +19,8 @@ include('app/controllers/venta/listado_ventas.php');
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-8">
-                    <h1 class="m-0">Bienvenido al sistema de ventas - <?php echo $nombre_sesion ?></h1>
+                <div class="col-sm-12">
+                    <h1 class="m-0">Bienvenid@ <?php echo $nombre_sesion ?> al sistema integrado de inventario y ventas</h1>
                 </div><!-- /.col -->
 
             </div><!-- /.row -->
@@ -30,7 +31,7 @@ include('app/controllers/venta/listado_ventas.php');
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
-            Contenido del modulo
+
             <!-- /.row -->
             <br></br>
             <div class="row">
@@ -202,9 +203,32 @@ include('app/controllers/venta/listado_ventas.php');
                         </a>
                     </div>
                 </div>
-            </div>
-            <!-- ./col -->
+                <!-- ./col -->
+                <div class="col-lg-3 col-6" style="color:white">
+                    <!-- small card -->
+                    <div class=" small-box" style="background-color:#5E2E91; ">
+                        <div class="inner">
+                            <?php
+                            $contador_cliente = 0;
+                            foreach ($datos_clientes as $dato_cliente) {
+                                $contador_cliente = $contador_cliente + 1;
+                            }
+                            ?>
+                            <h3><?php echo $contador_cliente; ?></h3>
+                            <p>Clientes registrados</p>
+                        </div>
+                        <a href="<?php echo $URL; ?>/cliente.php">
+                            <div class="icon" style="color:white">
+                                <i class="fi fi-rr-user-add"></i>
+                            </div>
+                        </a>
+                        <a href="<?php echo $URL; ?>/cliente" class="small-box-footer">
+                            Mas información <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div>
+                </div>
 
+            </div>
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->

@@ -1,9 +1,17 @@
 <?php
 include('../app/config.php');
 include('../layout/sesion.php');
+//consulta a la base de datos sobre la tabla usuario
+include('../app/controllers/login/controlador_autorizacion.php');
+
+if (!verificarAcceso('Roles')) {
+    // Denegar acceso y redirigir
+    // Si no tiene acceso, redirigir a una página de acceso denegado
+    header('Location: ' . $URL . '/acceso_denegado.php');
+    exit;  // Detener la ejecución después de redirigi
+}
 include('../layout/parte1.php');
 include('../app/controllers/roles/actualizar_usuario.php');
-
 ?>
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

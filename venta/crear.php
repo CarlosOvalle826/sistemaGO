@@ -1,13 +1,13 @@
 <?php
-include('../app/controllers/login/controlador_autorizacion.php');
-
-if (!verificarAcceso('Ventas')) {
-    // Denegar acceso
-    header('Location: acceso_denegado.php');
-    exit;  // Detener la ejecución después de redirigir
-}
 include('../app/config.php');
 include('../layout/sesion.php');
+include('../app/controllers/login/controlador_autorizacion.php');
+if (!verificarAcceso('Ventas')) {
+    // Denegar acceso y redirigir
+    // Si no tiene acceso, redirigir a una página de acceso denegado
+    header('Location: ' . $URL . '/acceso_denegado.php');
+    exit;  // Detener la ejecución después de redirigi
+}
 include('../layout/parte1.php');
 //consulta a la base de datos sobre la tabla usuario
 include('../app/controllers/almacen/listado_productos.php');
@@ -267,31 +267,30 @@ include('../app/controllers/venta/listado_ventas.php');
                                                     </tfoot>
                                                 </table>
                                             </div>
-
+                                            <!--Datos del producto que sera seleccionado durante la venta-->
                                             <div class="row" style="font-size: 12px">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <input id="IdProductoP" class="form-control form-control-sm" type="text" name="">
+                                                        <input id="IdProductoP" class="form-control form-control-sm" type="text" name="" hidden>
                                                         <label for="my-input">Producto</label>
-                                                        <input id="ProductoP" class="form-control form-control-sm" type="text" name="">
+                                                        <input id="ProductoP" class="form-control form-control-sm" type="text" name="" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5">
                                                     <div class="form-group">
                                                         <label for="my-input">Detalle</label>
-                                                        <input id="DetalleP" class="form-control form-control-sm" type="text" name="">
+                                                        <input id="DetalleP" class="form-control form-control-sm" type="text" name="" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label for="my-input">Cantidad</label>
-                                                        <input id="stock_disponible" type="number">
                                                         <input id="CantidadP" class="form-control form-control-sm" type="number" name="">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <label for="precio_selector">Precio unitario</label>
+                                                        <label for="precio_selector">Precio</label>
                                                         <select id="precio_selector" class="form-control form-control-sm">
                                                             <option value="">Selecciona un precio</option>
                                                             <option id="precio_venta"></option>
@@ -299,6 +298,13 @@ include('../app/controllers/venta/listado_ventas.php');
                                                             <!-- Añade más opciones si es necesario -->
                                                         </select>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" style=" font-size: 12px">
+                                                <div class="col-md-8"></div>
+                                                <div class="col-md-2">
+                                                    <label for="">Disponible</label>
+                                                    <input id="stock_disponible" class="form-control form-control-sm" type="number" readonly>
                                                 </div>
                                             </div>
                                             <button id="btn_añadir_producto" style="float: right" class="btn btn-primary">
@@ -552,27 +558,27 @@ include('../app/controllers/venta/listado_ventas.php');
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <input id="IdCliente" type="text">
+                                        <input id="IdCliente" type="text" hidden>
                                         <label for="">Nombre cliente</label>
-                                        <input id="nombre_cliente" type="text" class="form-control" required>
+                                        <input id="nombre_cliente" type="text" class="form-control" required readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="">Nit cliente</label>
-                                        <input id="nit_cliente" type="text" class="form-control" required>
+                                        <label for="">NIT cliente</label>
+                                        <input id="nit_cliente" type="text" class="form-control" required readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">Celular</label>
-                                        <input id="celular_cliente" type="text" class="form-control">
+                                        <input id="celular_cliente" type="text" class="form-control" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="">Correo</label>
-                                        <input id="correo_cliente" type="text" class="form-control">
+                                        <input id="correo_cliente" type="text" class="form-control" readonly>
                                     </div>
                                 </div>
                             </div>

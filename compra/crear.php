@@ -1,6 +1,14 @@
 <?php
 include('../app/config.php');
 include('../layout/sesion.php');
+//consulta a la base de datos sobre la tabla usuario
+include('../app/controllers/login/controlador_autorizacion.php');
+if (!verificarAcceso('Compras')) {
+    // Denegar acceso y redirigir
+    // Si no tiene acceso, redirigir a una página de acceso denegado
+    header('Location: ' . $URL . '/acceso_denegado.php');
+    exit;  // Detener la ejecución después de redirigi
+}
 include('../layout/parte1.php');
 include('../app/controllers/categorias/listado_categorias.php');
 //consulta a la base de datos sobre la tabla usuario
@@ -685,7 +693,7 @@ include('../app/controllers/compra/listado_compras.php');
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
-                                <div id="respuestaCrear">respuesta</div>
+                                <div id="respuestaCrear"></div>
                             </div>
                         </div>
                     </div>

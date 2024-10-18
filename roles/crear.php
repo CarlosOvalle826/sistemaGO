@@ -1,9 +1,19 @@
 <?php
-include('../app/config.php');
-include('../layout/sesion.php');
-include('../layout/parte1.php');
+// Usamos __DIR__ para que las rutas sean absolutas y funcionen tanto en local como en el servidor
+include(__DIR__ . '/../app/config.php');
+include(__DIR__ . '/../layout/sesion.php');
+// Consulta a la base de datos sobre la tabla usuario
+include(__DIR__ . '/../app/controllers/login/controlador_autorizacion.php');
 
+if (!verificarAcceso('Roles')) {
+    // Denegar acceso y redirigir
+    // Si no tiene acceso, redirigir a una página de acceso denegado
+    header('Location: ' . $URL . '/acceso_denegado.php');
+    exit;  // Detener la ejecución después de redirigi
+}
+include(__DIR__ . '/../layout/parte1.php');
 ?>
+
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <!-- Custom functions file -->

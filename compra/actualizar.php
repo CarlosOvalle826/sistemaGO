@@ -1,6 +1,14 @@
 <?php
 include('../app/config.php');
 include('../layout/sesion.php');
+//consulta a la base de datos sobre la tabla usuario
+include('../app/controllers/login/controlador_autorizacion.php');
+if (!verificarAcceso('Compras')) {
+    // Denegar acceso y redirigir
+    // Si no tiene acceso, redirigir a una página de acceso denegado
+    header('Location: ' . $URL . '/acceso_denegado.php');
+    exit;  // Detener la ejecución después de redirigir
+}
 include('../layout/parte1.php');
 include('../app/controllers/categorias/listado_categorias.php');
 //consulta a la base de datos sobre la tabla usuario
@@ -9,7 +17,6 @@ include('../app/controllers/almacen/listado_productos.php');
 include('../app/controllers/proveedor/listado_proveedores.php');
 //consulta a la base de datos sobre la tabla usuario
 include('../app/controllers/compra/cargar_compra.php');
-
 ?>
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -86,7 +93,7 @@ include('../app/controllers/compra/cargar_compra.php');
                                         <h5>Datos del producto</h5>
                                         <div style="width: 20px;"></div>
                                         <button type="button" class="btn btn-primary" data-toggle="modal"
-                                            data-target=" #modal_buscar_producto">
+                                            data-target=" #modal_buscar_producto" disabled>
                                             <i class="fa fa-search"></i>
                                             Buscar producto
                                         </button>
@@ -276,7 +283,7 @@ include('../app/controllers/compra/cargar_compra.php');
                                             <div class="row"><!--Primera fila-->
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <input value="<?= $IdProductoP; ?>" id="IdProducto" type="text">
+                                                        <input value="<?= $IdProductoP; ?>" id="IdProducto" type="text" hidden>
                                                         <label for="">Codigo</label>
                                                         <input value="<?= $CodigoProd; ?>" id="CodigoProducto" class="form-control" type="text" disabled>
                                                     </div>
@@ -502,7 +509,7 @@ include('../app/controllers/compra/cargar_compra.php');
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="">Nombre del proveedor</label>
-                                                    <input value="<?= $IdProveedorP; ?>" type="text" id="IdProveedor">
+                                                    <input value="<?= $IdProveedorP; ?>" type="text" id="IdProveedor" hidden>
                                                     <input value="<?= $NombreProveedorC; ?>" type="text" id="nombre_proveedor" class="form-control" disabled>
                                                 </div>
                                             </div>

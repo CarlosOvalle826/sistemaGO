@@ -26,8 +26,7 @@ function verificarAcceso($moduloNombre)
     global $pdo, $rol;
 
     // Verificar si el rol tiene acceso al módulo
-    $stmt = $pdo->prepare("
-        SELECT IdModulo 
+    $stmt = $pdo->prepare("SELECT IdModulo 
         FROM tbrol_modulos 
         WHERE IdRol = :rol 
           AND IdModulo = (SELECT IdModulo FROM tbmodulos WHERE NombreModulo = :moduloNombre)
@@ -36,12 +35,4 @@ function verificarAcceso($moduloNombre)
 
     // Retornar true si existe el módulo asignado al rol
     return $stmt->fetchColumn() !== false;
-}
-
-// Ejemplo de uso:
-// Verificar si el usuario tiene acceso al módulo "Ventas"
-if (!verificarAcceso('Ventas')) {
-    // Si no tiene acceso, redirigir a una página de acceso denegado
-    header('Location: ' . $URL . '/acceso_denegado.php');
-    exit;
 }

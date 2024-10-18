@@ -1,6 +1,14 @@
 <?php
 include('../app/config.php');
 include('../layout/sesion.php');
+//consulta a la base de datos sobre la tabla usuario
+include('../app/controllers/login/controlador_autorizacion.php');
+if (!verificarAcceso('Clientes')) {
+    // Denegar acceso y redirigir
+    // Si no tiene acceso, redirigir a una página de acceso denegado
+    header('Location: ' . $URL . '/acceso_denegado.php');
+    exit;  // Detener la ejecución después de redirigi
+}
 include('../layout/parte1.php');
 //consulta a la base de datos sobre la tabla usuario
 include('../app/controllers/cliente/mostrar_cantidad.php');
@@ -238,12 +246,12 @@ include('../layout/mensaje.php');
             language: {
                 "emptyTable": "No hay información",
                 "decimal": "",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ Categorías",
-                "infoEmpty": "Mostrando 0 to 0 de 0 Categorías",
-                "infoFiltered": "(Filtrado de _MAX_ total Categorías)",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Cliente",
+                "infoEmpty": "Mostrando 0 to 0 de 0 Cliente",
+                "infoFiltered": "(Filtrado de _MAX_ total Cliente)",
                 "infoPostFix": "",
                 "thousands": ",",
-                "lengthMenu": "Mostrar _MENU_ Categorías",
+                "lengthMenu": "Mostrar _MENU_ Clientes",
                 "loadingRecords": "Cargando...",
                 "processing": "Procesando...",
                 "search": "Buscador:",

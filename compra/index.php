@@ -1,10 +1,17 @@
 <?php
 include('../app/config.php');
 include('../layout/sesion.php');
+//consulta a la base de datos sobre la tabla usuario
+include('../app/controllers/login/controlador_autorizacion.php');
+if (!verificarAcceso('Compras')) {
+    // Denegar acceso y redirigir
+    // Si no tiene acceso, redirigir a una página de acceso denegado
+    header('Location: ' . $URL . '/acceso_denegado.php');
+    exit;  // Detener la ejecución después de redirigi
+}
 include('../layout/parte1.php');
 //consulta a la base de datos sobre la tabla usuario
 include('../app/controllers/compra/listado_compras.php');
-
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -366,12 +373,12 @@ include('../layout/mensaje.php');
             language: {
                 "emptyTable": "No hay información",
                 "decimal": "",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ Productos",
-                "infoEmpty": "Mostrando 0 to 0 de 0 Roles",
-                "infoFiltered": "(Filtrado de _MAX_ Total productos)",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Compras",
+                "infoEmpty": "Mostrando 0 to 0 de 0 compras",
+                "infoFiltered": "(Filtrado de _MAX_ Total compras)",
                 "infoPostFix": "",
                 "thousands": ",",
-                "lengthMenu": "Mostrar _MENU_ Productos",
+                "lengthMenu": "Mostrar _MENU_ Compras",
                 "loadingRecords": "Cargando...",
                 "processing": "Procesando...",
                 "search": "Buscador:",

@@ -1,16 +1,15 @@
 <?php
+include('../app/config.php');
+include('../layout/sesion.php');
 //consulta a la base de datos sobre la tabla usuario
 include('../app/controllers/login/controlador_autorizacion.php');
 
 if (!verificarAcceso('Ventas')) {
-    // Denegar acceso
-    header('Location: acceso_denegado.php');
-    exit;  // Detener la ejecución después de redirigir
+    // Denegar acceso y redirigir
+    // Si no tiene acceso, redirigir a una página de acceso denegado
+    header('Location: ' . $URL . '/acceso_denegado.php');
+    exit;  // Detener la ejecución después de redirigi
 }
-?>
-<?php
-include('../app/config.php');
-include('../layout/sesion.php');
 include('../layout/parte1.php');
 //consulta a la base de datos sobre la tabla cargar_detalle
 include('../app/controllers/venta/cargar_detalle.php');
@@ -364,12 +363,12 @@ include('../layout/mensaje.php');
             language: {
                 "emptyTable": "No hay información",
                 "decimal": "",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ Productos",
-                "infoEmpty": "Mostrando 0 to 0 de 0 Roles",
-                "infoFiltered": "(Filtrado de _MAX_ Total productos)",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Ventas",
+                "infoEmpty": "Mostrando 0 to 0 de 0 Ventas",
+                "infoFiltered": "(Filtrado de _MAX_ Total ventas)",
                 "infoPostFix": "",
                 "thousands": ",",
-                "lengthMenu": "Mostrar _MENU_ Productos",
+                "lengthMenu": "Mostrar _MENU_ Ventas",
                 "loadingRecords": "Cargando...",
                 "processing": "Procesando...",
                 "search": "Buscador:",

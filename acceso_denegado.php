@@ -1,3 +1,4 @@
+<?= include(__DIR__ . '/app/config.php'); ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -55,11 +56,10 @@
 </head>
 
 <body>
-
     <div class="container">
         <h1>Acceso Denegado</h1>
         <p>Lo sentimos, no tienes permiso para acceder a esta sección.</p>
-        <a href="http://192.168.1.106/sistemaGO/" class="button">Regresar a Inicio</a>
+        <a href="<?= $URL; ?>/" class="button">Regresar a Inicio</a>
     </div>
 
 </body>

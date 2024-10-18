@@ -1,6 +1,12 @@
 <?php
 include('../app/config.php');
 include('../layout/sesion.php');
+if (!verificarAcceso('Compras')) {
+    // Denegar acceso y redirigir
+    // Si no tiene acceso, redirigir a una página de acceso denegado
+    header('Location: ' . $URL . '/acceso_denegado.php');
+    exit;  // Detener la ejecución después de redirigi
+}
 include('../layout/parte1.php');
 include('../app/controllers/categorias/listado_categorias.php');
 include('../app/controllers/almacen/listado_productos.php');
@@ -10,6 +16,8 @@ include('../app/controllers/almacen/listado_productos.php');
 include('../app/controllers/proveedor/listado_proveedores.php');
 //consulta a la base de datos sobre la tabla 
 include('../app/controllers/compra/cargar_compra.php');
+//consulta a la base de datos sobre la tabla usuario
+include('../app/controllers/login/controlador_autorizacion.php');
 ?>
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
