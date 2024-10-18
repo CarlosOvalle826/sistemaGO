@@ -266,6 +266,18 @@ include('../app/controllers/venta/cargar_detalle.php');
                                                                 }
                                                             });
                                                         </script>
+                                                        <!--Impresión de factura o compronbante de la venta-->
+                                                        <button class="btn btn-success" id="btn_imprimir<?php echo $IdVenta; ?>" data-id="<?php echo $IdVenta; ?> ">Imprimir</button>
+                                                        <!--Script del botón-->
+                                                        <script>
+                                                            $(document).ready(function() {
+                                                                // Manejar el clic en el botón de imprimir
+                                                                $('[id^="btn_imprimir"]').click(function() {
+                                                                    var idVenta = $(this).data('id'); // Obtener el IdVenta desde el data-id del botón
+                                                                    window.location.href = 'factura.php?idVenta=' + idVenta; // Redirigir a factura.php con el IdVenta
+                                                                });
+                                                            });
+                                                        </script>
                                                     </center>
                                                 </td>
                                             </tr>
